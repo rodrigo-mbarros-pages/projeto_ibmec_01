@@ -1,5 +1,7 @@
 import os
 
+# Criação da estrutura de diretórios para o projeto
+# Ao iniciar um novo projeto em Python pode-se usar este script para criar a estrutura básica de diretórios e arquivos
 # Lista de caminhos de diretórios aninhados a serem criados
 # Use barras normais (/) ou os.path.join para compatibilidade entre sistemas operacionais
 lista_caminhos = [
