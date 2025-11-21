@@ -2,10 +2,8 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uvicorn
 
-from data.schemas import CupomInput
-from api.cupom_desconto import *
-from cupom_desconto import CupomDesconto
-
+from ..data.schemas import CupomInput, ProdutoOutput
+from .cupom_desconto import CupomDesconto
 
 app = FastAPI()
 
@@ -49,7 +47,7 @@ def listar_produtos():
     """
     return {"produtos": produtos_db}
 
-@app.get("/produtos/{produto_id}")
+@app.get("/produtos/{produto_id}", response_model=ProdutoOutput)
 def consultar_produto(produto_id: int):
     """
     Retorna um determinado produto pelo ID.
@@ -84,4 +82,4 @@ def aplicar_desconto(produto_id: int, cupom: CupomInput):
     }
 
 if __name__ == "__main__":
-    uvicorn.run('main:app', host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run('src.api.main:app', host="127.0.0.1", port=8000, reload=True)
