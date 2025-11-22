@@ -1,7 +1,7 @@
 """
 Testes para a API de produtos e descontos.
 """
-
+import pytest
 from fastapi.testclient import TestClient
 from src.api.main import app
 from src.config import API_VERSION
@@ -62,7 +62,7 @@ def test_aplicar_desconto_valido():
     assert data["id"] == 1
     assert data["nome"] == "Notebook"
     assert data["preco_original"] == 3000.00
-    assert data["desconto_percentual"] == 10.0
+    assert data["desconto_percentual"] == pytest.approx(10.0)
     assert data["preco_final"] == 2700.00
 
 
